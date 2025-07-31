@@ -4792,3 +4792,598 @@ INSERT INTO times (nome, cidade, estadio_id, data_criacao, data_atualizacao) VAL
 2025-07-31T17:58:51.491-03:00  INFO 11987 --- [main] c.a.championship.config.DatabaseConfig   : Banco de dados: H2 2.2.224 (2023-09-17)
 2025-07-31T17:58:51.492-03:00 DEBUG 11987 --- [main] o.s.jdbc.datasource.DataSourceUtils      : Fetching JDBC Connection from DataSource
 2025-07-31T17:58:51.494-03:00  INFO 11987 --- [main] c.a.championship.config.DatabaseConfig   : Teste de consulta ao banco de dados realizado com sucesso!
+2025-07-31T18:36:09.226-03:00  INFO 11987 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-31T18:36:09.228-03:00  INFO 11987 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-31T18:36:09.233-03:00  INFO 11987 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-07-31T18:36:09.452-03:00 DEBUG 11987 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        t1_0.time_id,
+        t1_1.nome 
+    from
+        campeonatos c1_0 
+    join
+        (campeonato_times t1_0 
+    join
+        times t1_1 
+            on t1_1.id=t1_0.time_id) 
+        on c1_0.id=t1_0.campeonato_id 
+    where
+        c1_0.id=?
+2025-07-31T18:36:32.770-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@20301113 wrapping conn5: url=jdbc:h2:mem:championshipdb user=ROOT] read-only
+2025-07-31T18:36:32.823-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante 
+    from
+        resultados r1_0
+2025-07-31T18:36:32.842-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.ano,
+        c1_0.nome,
+        p1_0.data,
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome,
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante,
+        tm1_0.id,
+        tm1_0.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        tm1_0.nome,
+        tv1_0.id,
+        tv1_0.cidade,
+        es2_0.id,
+        es2_0.endereco,
+        es2_0.nome,
+        tv1_0.nome 
+    from
+        partidas p1_0 
+    left join
+        campeonatos c1_0 
+            on c1_0.id=p1_0.campeonato_id 
+    left join
+        estadios e1_0 
+            on e1_0.id=p1_0.estadio_id 
+    left join
+        resultados r1_0 
+            on p1_0.id=r1_0.partida_id 
+    left join
+        times tm1_0 
+            on tm1_0.id=p1_0.time_mandante_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=tm1_0.estadio_id 
+    left join
+        times tv1_0 
+            on tv1_0.id=p1_0.time_visitante_id 
+    left join
+        estadios es2_0 
+            on es2_0.id=tv1_0.estadio_id 
+    where
+        p1_0.id=?
+2025-07-31T18:36:32.877-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.ano,
+        c1_0.nome,
+        p1_0.data,
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome,
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante,
+        tm1_0.id,
+        tm1_0.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        tm1_0.nome,
+        tv1_0.id,
+        tv1_0.cidade,
+        es2_0.id,
+        es2_0.endereco,
+        es2_0.nome,
+        tv1_0.nome 
+    from
+        partidas p1_0 
+    left join
+        campeonatos c1_0 
+            on c1_0.id=p1_0.campeonato_id 
+    left join
+        estadios e1_0 
+            on e1_0.id=p1_0.estadio_id 
+    left join
+        resultados r1_0 
+            on p1_0.id=r1_0.partida_id 
+    left join
+        times tm1_0 
+            on tm1_0.id=p1_0.time_mandante_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=tm1_0.estadio_id 
+    left join
+        times tv1_0 
+            on tv1_0.id=p1_0.time_visitante_id 
+    left join
+        estadios es2_0 
+            on es2_0.id=tv1_0.estadio_id 
+    where
+        p1_0.id=?
+2025-07-31T18:36:32.885-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@20301113 wrapping conn5: url=jdbc:h2:mem:championshipdb user=ROOT]
+2025-07-31T18:36:32.921-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        j1_0.time_id,
+        j1_0.id,
+        j1_0.altura,
+        j1_0.nascimento,
+        j1_0.nome 
+    from
+        jogadores j1_0 
+    where
+        j1_0.time_id=?
+2025-07-31T18:36:32.941-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.time_id,
+        c1_1.id,
+        c1_1.ano,
+        c1_1.nome 
+    from
+        campeonato_times c1_0 
+    join
+        campeonatos c1_1 
+            on c1_1.id=c1_0.campeonato_id 
+    where
+        c1_0.time_id=?
+2025-07-31T18:36:32.950-03:00 DEBUG 11987 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        t1_0.campeonato_id,
+        t1_1.id,
+        t1_1.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        t1_1.nome 
+    from
+        campeonato_times t1_0 
+    join
+        times t1_1 
+            on t1_1.id=t1_0.time_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=t1_1.estadio_id 
+    where
+        t1_0.campeonato_id=?
+2025-07-31T18:37:10.428-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@1654620481 wrapping conn5: url=jdbc:h2:mem:championshipdb user=ROOT] read-only
+2025-07-31T18:37:10.434-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        p1_0.id,
+        c1_0.id,
+        c1_0.ano,
+        c1_0.nome,
+        p1_0.data,
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome,
+        tm1_0.id,
+        tm1_0.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        tm1_0.nome,
+        tv1_0.id,
+        tv1_0.cidade,
+        es2_0.id,
+        es2_0.endereco,
+        es2_0.nome,
+        tv1_0.nome,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante 
+    from
+        resultados r1_0 
+    join
+        partidas p1_0 
+            on p1_0.id=r1_0.partida_id 
+    left join
+        campeonatos c1_0 
+            on c1_0.id=p1_0.campeonato_id 
+    left join
+        estadios e1_0 
+            on e1_0.id=p1_0.estadio_id 
+    left join
+        times tm1_0 
+            on tm1_0.id=p1_0.time_mandante_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=tm1_0.estadio_id 
+    left join
+        times tv1_0 
+            on tv1_0.id=p1_0.time_visitante_id 
+    left join
+        estadios es2_0 
+            on es2_0.id=tv1_0.estadio_id 
+    where
+        r1_0.id=?
+2025-07-31T18:37:10.440-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@1654620481 wrapping conn5: url=jdbc:h2:mem:championshipdb user=ROOT]
+2025-07-31T18:37:10.447-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        j1_0.time_id,
+        j1_0.id,
+        j1_0.altura,
+        j1_0.nascimento,
+        j1_0.nome 
+    from
+        jogadores j1_0 
+    where
+        j1_0.time_id=?
+2025-07-31T18:37:10.450-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.time_id,
+        c1_1.id,
+        c1_1.ano,
+        c1_1.nome 
+    from
+        campeonato_times c1_0 
+    join
+        campeonatos c1_1 
+            on c1_1.id=c1_0.campeonato_id 
+    where
+        c1_0.time_id=?
+2025-07-31T18:37:10.453-03:00 DEBUG 11987 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        t1_0.campeonato_id,
+        t1_1.id,
+        t1_1.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        t1_1.nome 
+    from
+        campeonato_times t1_0 
+    join
+        times t1_1 
+            on t1_1.id=t1_0.time_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=t1_1.estadio_id 
+    where
+        t1_0.campeonato_id=?
+2025-07-31T18:38:02.631-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.ano,
+        c1_0.nome,
+        t1_0.campeonato_id,
+        t1_1.id,
+        t1_1.cidade,
+        t1_1.estadio_id,
+        t1_1.nome 
+    from
+        campeonatos c1_0 
+    join
+        (campeonato_times t1_0 
+    join
+        times t1_1 
+            on t1_1.id=t1_0.time_id) 
+        on c1_0.id=t1_0.campeonato_id 
+    where
+        c1_0.id=?
+2025-07-31T18:38:02.635-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:38:02.637-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:38:02.639-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:38:02.642-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:38:02.644-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:38:02.648-03:00 DEBUG 11987 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.campeonato_id,
+        p1_0.id,
+        p1_0.data,
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome,
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante,
+        tm1_0.id,
+        tm1_0.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        tm1_0.nome,
+        tv1_0.id,
+        tv1_0.cidade,
+        es2_0.id,
+        es2_0.endereco,
+        es2_0.nome,
+        tv1_0.nome 
+    from
+        partidas p1_0 
+    left join
+        estadios e1_0 
+            on e1_0.id=p1_0.estadio_id 
+    left join
+        resultados r1_0 
+            on p1_0.id=r1_0.partida_id 
+    left join
+        times tm1_0 
+            on tm1_0.id=p1_0.time_mandante_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=tm1_0.estadio_id 
+    left join
+        times tv1_0 
+            on tv1_0.id=p1_0.time_visitante_id 
+    left join
+        estadios es2_0 
+            on es2_0.id=tv1_0.estadio_id 
+    where
+        p1_0.campeonato_id=?
+2025-07-31T18:39:02.771-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.ano,
+        c1_0.nome,
+        t1_0.campeonato_id,
+        t1_1.id,
+        t1_1.cidade,
+        t1_1.estadio_id,
+        t1_1.nome 
+    from
+        campeonatos c1_0 
+    join
+        (campeonato_times t1_0 
+    join
+        times t1_1 
+            on t1_1.id=t1_0.time_id) 
+        on c1_0.id=t1_0.campeonato_id 
+    where
+        c1_0.id=?
+2025-07-31T18:39:02.773-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:39:02.776-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:39:02.777-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:39:02.779-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:39:02.782-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome 
+    from
+        estadios e1_0 
+    where
+        e1_0.id=?
+2025-07-31T18:39:02.784-03:00 DEBUG 11987 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.campeonato_id,
+        p1_0.id,
+        p1_0.data,
+        e1_0.id,
+        e1_0.endereco,
+        e1_0.nome,
+        r1_0.id,
+        r1_0.cartoes_amarelos_mandante,
+        r1_0.cartoes_amarelos_visitante,
+        r1_0.cartoes_vermelhos_mandante,
+        r1_0.cartoes_vermelhos_visitante,
+        r1_0.data_atualizacao,
+        r1_0.escanteios_mandante,
+        r1_0.escanteios_visitante,
+        r1_0.faltas_mandante,
+        r1_0.faltas_visitante,
+        r1_0.finalizacoes_mandante,
+        r1_0.finalizacoes_no_gol_mandante,
+        r1_0.finalizacoes_no_gol_visitante,
+        r1_0.finalizacoes_visitante,
+        r1_0.gols_time_mandante,
+        r1_0.gols_time_visitante,
+        r1_0.impedimentos_mandante,
+        r1_0.impedimentos_visitante,
+        r1_0.partida_id,
+        r1_0.posse_de_bola_mandante,
+        r1_0.posse_de_bola_visitante,
+        tm1_0.id,
+        tm1_0.cidade,
+        es1_0.id,
+        es1_0.endereco,
+        es1_0.nome,
+        tm1_0.nome,
+        tv1_0.id,
+        tv1_0.cidade,
+        es2_0.id,
+        es2_0.endereco,
+        es2_0.nome,
+        tv1_0.nome 
+    from
+        partidas p1_0 
+    left join
+        estadios e1_0 
+            on e1_0.id=p1_0.estadio_id 
+    left join
+        resultados r1_0 
+            on p1_0.id=r1_0.partida_id 
+    left join
+        times tm1_0 
+            on tm1_0.id=p1_0.time_mandante_id 
+    left join
+        estadios es1_0 
+            on es1_0.id=tm1_0.estadio_id 
+    left join
+        times tv1_0 
+            on tv1_0.id=p1_0.time_visitante_id 
+    left join
+        estadios es2_0 
+            on es2_0.id=tv1_0.estadio_id 
+    where
+        p1_0.campeonato_id=?
+2025-07-31T18:44:52.956-03:00  INFO 11987 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-31T18:44:52.961-03:00  INFO 11987 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-31T18:44:52.963-03:00  INFO 11987 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
