@@ -1,0 +1,25 @@
+-- Criação da tabela resultados para Flyway
+CREATE TABLE resultados (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    partida_id BIGINT NOT NULL UNIQUE,
+    gols_time_mandante INTEGER,
+    gols_time_visitante INTEGER,
+    posse_de_bola_mandante INTEGER,
+    posse_de_bola_visitante INTEGER,
+    finalizacoes_mandante INTEGER,
+    finalizacoes_visitante INTEGER,
+    finalizacoes_no_gol_mandante INTEGER,
+    finalizacoes_no_gol_visitante INTEGER,
+    escanteios_mandante INTEGER,
+    escanteios_visitante INTEGER,
+    faltas_mandante INTEGER,
+    faltas_visitante INTEGER,
+    impedimentos_mandante INTEGER,
+    impedimentos_visitante INTEGER,
+    cartoes_amarelos_mandante INTEGER,
+    cartoes_amarelos_visitante INTEGER,
+    cartoes_vermelhos_mandante INTEGER,
+    cartoes_vermelhos_visitante INTEGER,
+    data_atualizacao TIMESTAMP,
+    CONSTRAINT fk_resultado_partida FOREIGN KEY (partida_id) REFERENCES partidas(id)
+);

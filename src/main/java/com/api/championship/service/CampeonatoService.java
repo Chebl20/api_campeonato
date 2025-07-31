@@ -43,12 +43,15 @@ public class CampeonatoService {
         
         // Calcula os pontos
         campeonato.getPartidas().forEach(partida -> {
-            if (partida.getGolsTimeMandante() != null && partida.getGolsTimeVisitante() != null) {
+            if (partida.getResultado() != null && 
+                partida.getResultado().getGolsTimeMandante() != null && 
+                partida.getResultado().getGolsTimeVisitante() != null) {
+                
                 TimeClassificacao timeMandante = classificacao.get(partida.getTimeMandante().getId());
                 TimeClassificacao timeVisitante = classificacao.get(partida.getTimeVisitante().getId());
                 
-                int golsMandante = partida.getGolsTimeMandante();
-                int golsVisitante = partida.getGolsTimeVisitante();
+                int golsMandante = partida.getResultado().getGolsTimeMandante();
+                int golsVisitante = partida.getResultado().getGolsTimeVisitante();
                 
                 // Atualiza saldo de gols
                 timeMandante.setSaldoGols(timeMandante.getSaldoGols() + golsMandante - golsVisitante);

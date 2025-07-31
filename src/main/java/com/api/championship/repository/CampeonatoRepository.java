@@ -15,17 +15,21 @@ public interface CampeonatoRepository extends JpaRepository<Campeonato, Long> {
     
     @Query("SELECT DISTINCT c FROM Campeonato c " +
            "JOIN FETCH c.partidas p " +
+           "LEFT JOIN FETCH p.resultado r " +
            "WHERE c.id = :campeonatoId " +
            "AND p.data < CURRENT_DATE " +
-           "AND p.golsTimeMandante IS NOT NULL " +
-           "AND p.golsTimeVisitante IS NOT NULL")
+           "AND r IS NOT NULL " +
+           "AND r.golsTimeMandante IS NOT NULL " +
+           "AND r.golsTimeVisitante IS NOT NULL")
     List<Campeonato> findPartidasOcorridas(@Param("campeonatoId") Long campeonatoId);
     
     @Query("SELECT DISTINCT c FROM Campeonato c " +
            "JOIN FETCH c.partidas p " +
+           "LEFT JOIN p.resultado r " +
            "WHERE c.id = :campeonatoId " +
            "AND (p.data > CURRENT_DATE " +
-           "OR p.golsTimeMandante IS NULL " +
-           "OR p.golsTimeVisitante IS NULL)")
+           "OR r IS NULL " +
+           "OR r.golsTimeMandante IS NULL " +
+           "OR r.golsTimeVisitante IS NULL)")
     List<Campeonato> findPartidasNaoOcorridas(@Param("campeonatoId") Long campeonatoId);
 }

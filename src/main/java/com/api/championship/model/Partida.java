@@ -30,11 +30,10 @@ public class Partida {
     @JoinColumn(name = "estadio_id")
     private Estadio estadio;
     
-    private Integer golsTimeMandante;
-    
-    private Integer golsTimeVisitante;
-    
     @ManyToOne
     @JoinColumn(name = "campeonato_id")
     private Campeonato campeonato;
+    
+    @OneToOne(mappedBy = "partida", cascade = CascadeType.ALL)
+    private Resultado resultado;
 }
