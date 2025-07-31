@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.time.LocalDate;
 
@@ -31,5 +32,6 @@ public class Jogador {
     
     @ManyToOne
     @JoinColumn(name = "time_id")
+    @JsonBackReference
     private Time time;
 }

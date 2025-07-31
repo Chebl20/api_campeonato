@@ -1,6 +1,9 @@
 package com.api.championship.controller;
 
 import com.api.championship.dto.CampeonatoDTO;
+import com.api.championship.dto.PartidaInfoDTO;
+import com.api.championship.dto.TimeClassificacaoDTO;
+import com.api.championship.dto.TimeInfoDTO;
 import com.api.championship.model.Campeonato;
 import com.api.championship.model.Time;
 import com.api.championship.repository.CampeonatoRepository;
@@ -69,22 +72,27 @@ public class CampeonatoController {
     }
     
     @GetMapping("/{id}/times")
-    public List<Time> listarTimes(@PathVariable Long id) {
-        return campeonatoService.listarTimesDoCampeonato(id);
+    public ResponseEntity<List<TimeInfoDTO>> listarTimesEssenciais(@PathVariable Long id) {
+        return ResponseEntity.ok(campeonatoService.listarTimesEssenciais(id));
     }
+
+//    @GetMapping("/{id}/times")
+//    public List<TimeInfoDTO> listarTimes(@PathVariable Long id) {
+//        return campeonatoService.listarTimesDoCampeonato(id);
+//    }
     
     @GetMapping("/{id}/partidas/ocorridas")
-    public List<Campeonato> listarPartidasOcorridas(@PathVariable Long id) {
+    public List<PartidaInfoDTO> listarPartidasOcorridas(@PathVariable Long id) {
         return campeonatoService.listarPartidasOcorridas(id);
     }
     
     @GetMapping("/{id}/partidas/nao-ocorridas")
-    public List<Campeonato> listarPartidasNaoOcorridas(@PathVariable Long id) {
+    public List<PartidaInfoDTO> listarPartidasNaoOcorridas(@PathVariable Long id) {
         return campeonatoService.listarPartidasNaoOcorridas(id);
     }
     
     @GetMapping("/{id}/tabela")
-    public List<CampeonatoService.TimeClassificacao> getTabelaCampeonato(@PathVariable Long id) {
+    public List<TimeClassificacaoDTO>getTabelaCampeonato(@PathVariable Long id) {
         return campeonatoService.getTabelaCampeonato(id);
     }
 }

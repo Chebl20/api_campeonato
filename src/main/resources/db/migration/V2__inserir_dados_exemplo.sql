@@ -63,17 +63,17 @@ INSERT INTO partidas (data, time_mandante_id, time_visitante_id, estadio_id, gol
 ('2023-04-23 16:00:00', 6, 1, 2, 0, 2, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);  -- Palmeiras 0x2 Flamengo
 
 -- Atualizar a tabela de auditoria
-INSERT INTO auditoria (acao, tabela_afetada, dados_novos, usuario) 
+INSERT INTO auditoria (acao, tabela_afetada, dados_novos, usuario)
 VALUES ('MIGRACAO', 'BANCO_DE_DADOS', 'Dados de exemplo inseridos/atualizados com sucesso na migração V2', 'SISTEMA');
 
 -- Atualizar a versão do banco de dados
-UPDATE configuracao_sistema 
-SET valor = '1.1.0', 
+UPDATE configuracao_sistema
+SET valor = '1.1.0',
     descricao = 'Versão com estrutura atualizada e dados de exemplo',
     data_atualizacao = CURRENT_TIMESTAMP
 WHERE chave = 'VERSAO_BANCO';
 
-UPDATE configuracao_sistema 
+UPDATE configuracao_sistema
 SET valor = CURRENT_TIMESTAMP,
     data_atualizacao = CURRENT_TIMESTAMP
 WHERE chave = 'ULTIMA_ATUALIZACAO';
